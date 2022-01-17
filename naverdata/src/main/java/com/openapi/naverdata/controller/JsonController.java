@@ -1,8 +1,7 @@
 package com.openapi.naverdata.controller;
 
-import org.springframework.stereotype.Controller;
+import com.openapi.naverdata.SearchData;
 import org.springframework.web.bind.annotation.*;
-
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -13,12 +12,9 @@ import java.util.Map;
 
 @RestController
 public class JsonController
-
 {
-
-
     @RequestMapping(value = "/request",method = {RequestMethod.POST,RequestMethod.GET})
-    public String CallAPi() throws IOException {
+    public String CallAPi(@RequestBody SearchData data) {
         String clientId = "H0ScqyAs1A275AWJrVuf"; // 애플리케이션 클라이언트 아이디
         String clientSecret = "q1skFqM7PY"; // 애플리케이션 클라이언트 시크릿
 
@@ -29,14 +25,13 @@ public class JsonController
 
         String apiUrl = "https://openapi.naver.com/v1/datalab/search";
 
-        String requestBody = "{\"startDate\":\"2017-01-01\"," +
-                "\"endDate\":\"2017-04-30\"," +
-                "\"timeUnit\":\"month\"," +
-                "\"keywordGroups\":[{\"groupName\":\"한글\"," + "\"keywords\":[\"한글\",\"korean\"]}," +
-                "{\"groupName\":\"영어\"," + "\"keywords\":[\"영어\",\"english\"]}]," +
-                "\"device\":\"pc\"," +
-                "\"ages\":[\"1\",\"2\"]," +
-                "\"gender\":\"f\"}";
+        String requestBody = "{\"startDate\":\""+ data.getStartDate() + "\"," +
+                "\"endDate\":\""+data.getEndDate()+"\"," +
+                "\"timeUnit\":\""+data.getTimeUnit() +"\"," +
+                "\"keywordGroups\":[{\"groupName\":\""+data.getGroupName1()+"\","
+                + "\"keywords\":[\"" + data.getKeyWords1() +"\"]}," +
+                "{\"groupName\":\""+ data.getGroupName2() + "\","
+                + "\"keywords\":[\""+ data.getKeyWords2() +"\"]}]" + "}";
 
 
 
