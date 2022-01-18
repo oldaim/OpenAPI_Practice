@@ -17,11 +17,12 @@ public class ResultData {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "result_id")
     private Result result;
 
     @Column
     private String period;
 
     @Column
-    private Long ratio;
+    private Double ratio;
 }

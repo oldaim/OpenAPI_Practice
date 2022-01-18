@@ -1,14 +1,12 @@
-package com.openapi.naverdata;
+package com.openapi.naverdata.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class SearchData {
     /*
   "startDate": "2017-01-01",
@@ -29,9 +27,5 @@ public class SearchData {
     private String groupName1;
 
     private String keyWords1;
-
-    private String groupName2;
-
-    private String keyWords2;
 
 }

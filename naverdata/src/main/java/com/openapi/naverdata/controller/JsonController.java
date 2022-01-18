@@ -1,7 +1,15 @@
 package com.openapi.naverdata.controller;
 
-import com.openapi.naverdata.SearchData;
-import org.springframework.web.bind.annotation.*;
+import com.openapi.naverdata.dto.SearchData;
+import com.openapi.naverdata.service.JsonApiService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -10,13 +18,20 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
+
+@RequiredArgsConstructor
 @RestController
-public class JsonController
-{
+@Log4j2
+public class JsonController {
+
+
+
     @RequestMapping(value = "/request",method = {RequestMethod.POST,RequestMethod.GET})
-    public String CallAPi(@RequestBody SearchData data) {
-        String clientId = "H0ScqyAs1A275AWJrVuf"; // 애플리케이션 클라이언트 아이디
-        String clientSecret = "q1skFqM7PY"; // 애플리케이션 클라이언트 시크릿
+    public static String callApi(@RequestBody SearchData data) {
+        ClientInfo info = new ClientInfo();
+
+        String clientId = info.getClientID(); // 애플리케이션 클라이언트 아이디
+        String clientSecret = info.getClientSecret(); // 애플리케이션 클라이언트 시크릿
 
         Map<String, String> requestHeaders = new HashMap<>();
         requestHeaders.put("X-Naver-Client-Id", clientId);
@@ -29,13 +44,12 @@ public class JsonController
                 "\"endDate\":\""+data.getEndDate()+"\"," +
                 "\"timeUnit\":\""+data.getTimeUnit() +"\"," +
                 "\"keywordGroups\":[{\"groupName\":\""+data.getGroupName1()+"\","
-                + "\"keywords\":[\"" + data.getKeyWords1() +"\"]}," +
-                "{\"groupName\":\""+ data.getGroupName2() + "\","
-                + "\"keywords\":[\""+ data.getKeyWords2() +"\"]}]" + "}";
+                + "\"keywords\":[\"" + data.getKeyWords1() +"\"]}]" + "}";
 
 
 
         String responseBody = post(apiUrl, requestHeaders, requestBody);
+        log.info(responseBody);
 
         return responseBody;
 
