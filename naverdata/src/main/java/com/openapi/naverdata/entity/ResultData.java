@@ -6,10 +6,9 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@Setter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class ResultData {
 
     @Id
@@ -24,5 +23,6 @@ public class ResultData {
     private String period;
 
     @Column
-    private Double ratio;
+    private int ratio;
+
 }
