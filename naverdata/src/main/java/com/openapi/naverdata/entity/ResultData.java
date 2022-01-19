@@ -1,15 +1,17 @@
 package com.openapi.naverdata.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-@Setter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class ResultData {
 
     @Id
@@ -24,5 +26,6 @@ public class ResultData {
     private String period;
 
     @Column
-    private Double ratio;
+    private int ratio;
+
 }

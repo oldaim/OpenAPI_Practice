@@ -57,9 +57,9 @@ public class ParsingService {
                 List<ResultDataDto> temporaryList = new ArrayList<>();
 
                 for (int j = 0; j < dataInfoArray.size(); j++) {
-                    JSONObject rdateOject = (JSONObject) dataInfoArray.get(i);
+                    JSONObject rdateOject = (JSONObject) dataInfoArray.get(j);
                     String period = (String) rdateOject.get("period");
-                    double ratio = Double.parseDouble((String)rdateOject.get("ratio"));
+                    double ratio = Double.parseDouble(String.valueOf(rdateOject.get("ratio")));
                     int ratioInt = (int)ratio;
 
                     resultDataDto = ResultDataDto
