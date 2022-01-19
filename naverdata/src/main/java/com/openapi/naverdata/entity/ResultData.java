@@ -1,15 +1,17 @@
 package com.openapi.naverdata.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-@Setter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class ResultData {
 
     @Id
@@ -17,11 +19,13 @@ public class ResultData {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "result_id")
     private Result result;
 
     @Column
     private String period;
 
     @Column
-    private Long ratio;
+    private int ratio;
+
 }
