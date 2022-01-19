@@ -6,31 +6,17 @@ import com.openapi.naverdata.entity.Result;
 import com.openapi.naverdata.entity.ResultData;
 import com.openapi.naverdata.repository.DataRepository;
 import com.openapi.naverdata.repository.ResultRepository;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 @Log4j2
 public class ResultService {
 
-    ResultRepository resultRepository;
-
-    DataRepository dataRepository;
-
-    @Autowired
-    public ResultService(ResultRepository resultRepository, DataRepository dataRepository) {
-        this.resultRepository = resultRepository;
-        this.dataRepository = dataRepository;
-    }
-
+    private final ResultRepository resultRepository;
+    private final DataRepository dataRepository;
 
     public Long save(ResultDto dto){
 
