@@ -25,4 +25,6 @@ public class ResultData {
 
     @Column
     private Double ratio;
+
+
 }

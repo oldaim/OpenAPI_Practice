@@ -1,5 +1,6 @@
 package com.openapi.naverdata;
 
+
 import com.openapi.naverdata.controller.JsonController;
 import com.openapi.naverdata.dto.SearchData;
 import javafx.application.Application;
@@ -29,7 +30,8 @@ public class JsonControllerTest {
     JsonController jsonController;
 
     @Test
-    public void callApiTest() throws Exception {
+    public String callApiTest() throws Exception {
+        return "hello";
     }
 
 }
